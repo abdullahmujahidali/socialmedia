@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;600&display=swap');
 a{
   color: white !important;
 }
+
+.brand-logo, h2{
+  font-family: 'Sansita Swashed', cursive;
+}
+
+.mycard{
+  margin-top: 30px;
+  color:black;
+}
+
+.auth-card{
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 10px auto;
+  
+}
+.acc{
+  color:black !important;
+}
+
+.input-field input[type=text]:focus{
+  border-bottom: 1px solid rgb(175, 13, 13) !important;
+  box-shadow: 0 1px 0 0  rgb(175, 13, 13) !important;
+} 
