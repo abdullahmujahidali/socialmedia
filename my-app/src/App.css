@@ -43,3 +43,9 @@ a{
   height: max-content;
   margin:26px auto;
 }
+
+#toast-container{
+  top:40px !important;
+  right:40px !important;
+  left: auto !important;
+}
