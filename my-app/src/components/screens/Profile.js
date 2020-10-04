@@ -1,6 +1,20 @@
-import React from "react"
+import React,{useEffect,useState,useContext} from "react"
+import {UserContext} from "../../App"
 
 const Profile =()=>{
+    const [mypics,setPics]=useState([])
+    const {state,dispatch}= useContext(UserContext)
+    console.log(state)
+    useEffect(()=>{
+        fetch("/mypost",{
+            headers:{
+                "Authorization": "Bearer "+ localStorage.getItem("jwt")
+            }
+        }).then(res =>res.json())
+        .then(result=>{
+            setPics(result.mypost)
+        })
+    },[])
 return (
     <div style={{maxWidth: "550px", margin:"0px auto"}}>
         <div style={{
@@ -13,9 +27,9 @@ return (
                 <img  style={{width:"160px",height:"160px",borderRadius:"80px"}}
                     src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg"
                 />
-            </div>
+            </div> 
             <div>
-                <h4>Abdullah Mujahid</h4>
+                <h4>{state?state.name:"loading"}</h4>
                 <div style={{display:"flex", justifyContent: "space-between", width:"108%"}}>
                     <h6>40 posts</h6>
                     <h6>408 followers</h6>
@@ -26,13 +40,14 @@ return (
         </div>
    
         <div className="gallery">
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-            <img className="item" src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg" />
-
+        {
+             mypics.map(item=>{
+                 return (
+                    <img key={item._id} className="item" src={item.photo} alt={item.title} />
+                 )
+             })
+        }
+           
 
         </div>
     </div>
