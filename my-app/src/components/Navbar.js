@@ -1,30 +1,40 @@
-import React, { Fragment } from "react"
+import React, { useContext,Fragment } from "react"
 import { Link } from "react-router-dom"
-
+import {UserContext} from "../App"
 const NavBar = () => {
+  const {state,dispatch}=useContext(UserContext)
+  const renderList=()=>{
+    if(state){
+      return [
+        <Fragment>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/create">Create Post</Link></li>
+        </Fragment>
+      ]
+    }
+    else{
+      return[
+      <Fragment>
+      <li><Link to="/signin">Login</Link></li>
+      <li><Link to="/signup">Sign Up</Link></li>
+      </Fragment>
+      ]
+    }
+  }
   return (
+
     <Fragment>
     
       <nav>
         <div className="nav-wrapper black ">
-          <Link to="/" className="brand-logo  ">Snap 4 Everyone</Link>
-          <Link to="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></Link>
-          <ul className="right hide-on-med-and-down">
-            <li><Link to="/signin">Login</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
-            <li><Link to="/create">Create Post</Link></li>
+          <Link to={state ? "/": "/signin"} className="brand-logo  ">Paparazzo</Link>
+          <ul id="nav-mobile" className="right">
+            {renderList()}
           </ul>
         </div>
 
       </nav>
-      <ul className="sidenav" id="mobile-demo">
-        <li><Link to="/signin">Login</Link></li>
-        <li><Link to="/signup">Sign Up</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/create">Create Post</Link></li>
-      </ul>
-   
+    
     </Fragment>
   )
 }
