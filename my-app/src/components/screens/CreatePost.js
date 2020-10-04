@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useState, useEffect} from "react"
 import {useHistory} from "react-router-dom"
 import M from "materialize-css"
 const CreatePost = () => {
@@ -7,6 +7,35 @@ const CreatePost = () => {
     const [body,setBody]= useState("")
     const [image,setImage]=useState("")
     const [url,setUrl]=useState("")
+    useEffect(()=>{
+            if(url){
+                fetch('/createpost',{
+                    method:"post",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Authorization": "Bearer "+localStorage.getItem("jwt")
+                    },
+                    body: JSON.stringify({
+                        title,
+                        body,
+                        pic:url
+                    })
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.error){
+                        M.toast({html:data.error, classes:"#004d40 teal darken-4"})
+                    }
+                    else{
+                        M.toast({html: "Post created", classes:"#03a9f4 light-blue"})
+                        history.push("/")
+                    }
+                 }).catch(err=>{
+                     console.log(err)
+                 })
+            }
+            
+    },[body,history,title,url])
     const postDetails=()=>{
         const data=new FormData()
         
@@ -24,29 +53,7 @@ const CreatePost = () => {
     .catch(err=>{
         console.log(err)
     })
-    fetch('/createpost',{
-        method:"post",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-            title,
-            body,
-            pic:url
-        })
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.error){
-            M.toast({html:data.error, classes:"#004d40 teal darken-4"})
-        }
-        else{
-            M.toast({html: "Post created", classes:"#03a9f4 light-blue"})
-            history.push("/")
-        }
-     }).catch(err=>{
-         console.log(err)
-     })
+    
 }
 
 
