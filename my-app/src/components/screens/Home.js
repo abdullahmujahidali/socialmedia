@@ -1,47 +1,41 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
-const Home =()=>{
-return (
-    <div className="home">
-        <div className="card home-card">
-            <h5>Abdullah Mujahid</h5>
-            <div className="card-image">
-                <img src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="post"></img>
-            </div>
-            <div className="card-content">
-            <i class="material-icons" style={{color:"red"}}>whatshot</i>
-                <h4>Title</h4>
-                <p>This is an amazing post</p>
-                <input type="text" placeholder="Add a comment" />
-            </div>
+const Home = () => {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        fetch("/allpost", {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setData(result)
+            })
+    }, [])
+    return (
+        <div className="home">
+            {
+                data.map(item => {
+                    return (
+                        <div className="card home-card" key={item._id}>
+                            <h5>{item.postedBy.name}</h5>
+                            <div className="card-image">
+                                <img src={item.photo} alt="post"></img>
+                            </div>
+                            <div className="card-content">
+                                <i className="material-icons" style={{ color: "red" }}>whatshot</i>
+                                <h4>{item.title}</h4>
+                                <p>{item.body}</p>
+                                <input type="text" placeholder="Add a comment" />
+                            </div>
+                        </div>
+                    )
+                })
+            }
+
+
         </div>
-        <div className="card home-card">
-            <h5>Abdullah Mujahid</h5>
-            <div className="card-image">
-                <img src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="post"></img>
-            </div>
-            <div className="card-content">
-            <i class="material-icons" style={{color:"red"}}>whatshot</i>
-                <h4>Title</h4>
-                <p>This is an amazing post</p>
-                <input type="text" placeholder="Add a comment" />
-            </div>
-        </div>
-        <div className="card home-card">
-            <h5>Abdullah Mujahid</h5>
-            <div className="card-image">
-                <img src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="post"></img>
-            </div>
-            <div className="card-content">
-            <i class="material-icons" style={{color:"red"}}>whatshot</i>
-                <h4>Title</h4>
-                <p>This is an amazing post</p>
-                <input type="text" placeholder="Add a comment" />
-            </div>
-        </div>
-        
-    </div>
-)
+    )
 }
 
 export default Home
