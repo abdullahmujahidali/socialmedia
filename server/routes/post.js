@@ -109,5 +109,38 @@ router.put("/unlike",requireLogin,(req,res)=>{
     })
 })
 
+router.put("/likecomment",requireLogin,(req,res)=>{
+    Post.findByIdAndUpdate(req.body.postId,{
+        $push:{commentLikes:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }
+        else{
+            res.json(result)
+        }
+    })
+})
+
+
+
+router.put("/unlikecomment",requireLogin,(req,res)=>{
+    Post.findByIdAndUpdate(req.body.postId,{
+        $pull:{commentlikes:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }
+        else{
+            res.json(result)
+        }
+    })
+})
+
+
 
 module.exports =router

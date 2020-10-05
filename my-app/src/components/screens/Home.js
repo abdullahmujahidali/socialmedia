@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useContext } from "react"
 import {UserContext} from "../../App"
+
 const Home = () => {
     const [data, setData] = useState([])
     const {state,dispatch}=useContext(UserContext)
@@ -39,6 +40,59 @@ const Home = () => {
             console.log(err)
         })
     }
+    const likeComment=(id)=>{
+        fetch("/likecomment",{
+            method:"put",
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": "Bearer "+localStorage.getItem("jwt")
+            },
+            body:JSON.stringify({
+                postId:id
+            })
+        }).then(res=>res.json())
+        .then(result=>{
+            const newData=data.map(item=>{
+                if(item._id===result._id){
+                    return result
+                }
+                else{
+                    return item
+                }
+            })
+            setData(newData)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+   
+    const unlikeComment=(id)=>{
+        fetch("/unlikecomment",{
+            method:"put",
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": "Bearer "+localStorage.getItem("jwt")
+            },
+            body:JSON.stringify({
+                postId:id
+            })
+        }).then(res=>res.json())
+        .then(result=>{
+            // console.log(result)
+            const newData=data.map(item=>{
+                if(item._id===result._id){
+                    return result
+                }
+                else{
+                    return item
+                }
+            })
+            setData(newData)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    
     const unlikePost=(id)=>{
         fetch("/unlike",{
             method:"put",
@@ -118,8 +172,14 @@ const Home = () => {
                                 {
                                     item.comments.map(record=>{
                                         return (
-                                            <h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}: </span>{record.text}</h6>
+                                            
+                                            <h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}: </span>{record.text}
+                                            
+                                            <h6 ><i className="material-icons">cancel</i>  </h6>
+                                      
+                                            </h6>
                                         )
+                                    
                                     })
                                 }
                                 <form onSubmit={(e)=>{
@@ -132,9 +192,8 @@ const Home = () => {
                         </div>
                     )
                 })
+             
             }
-
-
         </div>
     )
 }

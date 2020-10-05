@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;600&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 a{
   color: white !important;
 }
@@ -52,4 +54,98 @@ a{
   top:40px !important;
   right:40px !important;
   left: auto !important;
+}
+.rr{
+  float:0;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.yell{
+  color: white;
+
+}
+body {
+    background-color: #fff;
+    font-family: "Roboto", sans-serif;
+    height: 95vh;
+    min-height: 100%;
+    margin: 0;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+body::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+  
+.container {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+header {
+  background-image: url("https://assets1.ignimgs.com/2017/01/05/top100animated-desktop-notext-1483653912600.jpg");
+  background-size: cover;
+  background-position: center center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 80vh;
+}
+
+.content {
+  font-size: 2rem;
+  margin: auto;
+  max-width: 100%;
+}
+.h1c{
+  font-size: 5rem;
+}
+
+.mov{
+  font-size: 2rem;
+  position: absolute;
+  right: 50%;
+  margin: auto;
+  max-width: 100%;
+}
+.mov a{
+  height: 50px;
+  max-width: 100%;
+  font-size: 2rem;
+}
+.mov i{
+  height: 50px;
+  max-width: 100%;
+  font-size: 2rem;
+}
+.content h1 {
+  color: #00c2ff;
+  margin-bottom: 0;
+}
+footer {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;  
+}
+
+footer ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+
+footer strong {
+  color: #00c2ff;
+}
+
+footer p {
+    margin: 0;
 }

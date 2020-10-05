@@ -10,11 +10,11 @@ const NavBar = () => {
         <Fragment>
         <li><Link to="/profile">Profile</Link></li>
         <li><Link to="/create">Create Post</Link></li>
-        <button className="btn waves-effect waves-light #b71c1c red darken-4"
+        <button className="btn waves-effect waves-light #b71c1c red darken-4 yell"
               onClick={()=>{
                 localStorage.clear()
                 dispatch({type:"CLEAR"})
-                history.push("/signin")
+                history.push("/MainPage")
               }}  
              >LOG OUT
              </button>
@@ -38,7 +38,7 @@ const NavBar = () => {
     
       <nav>
         <div className="nav-wrapper black ">
-          <Link to={state ? "/": "/signin"} className="brand-logo  ">Paparazzo</Link>
+          <Link to={state ? "/": "/MainPage"} className="brand-logo  ">Paparazzo</Link>
           <ul id="nav-mobile" className="right">
             {renderList()}
           </ul>

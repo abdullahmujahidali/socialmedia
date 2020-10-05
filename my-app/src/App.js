@@ -7,6 +7,8 @@ import Signin from "./components/screens/SignIn"
 import Profile from "./components/screens/Profile"
 import Signup from "./components/screens/Signup"
 import CreatePost from "./components/screens/CreatePost"
+import MainPage from "./components/screens/MainPage"
+
 import {reducer,initialState} from "./reducers/userReducer"
 export const UserContext = createContext()
 
@@ -20,13 +22,16 @@ const Routing = () => {
   
     }
     else{
-      history.push("/signin")
+      history.push("/MainPage")
     }
   },[history,dispatch])
   return (
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route path="/MainPage">
+        <MainPage/>
       </Route>
       <Route path="/signin">
         <Signin />
@@ -49,6 +54,7 @@ function App() {
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
+      
       <NavBar />
       <Routing />
 
