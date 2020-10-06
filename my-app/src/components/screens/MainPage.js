@@ -9,7 +9,10 @@ const MainPage=()=>{
             <div className="content">
                 <div className="container">
                     <h1 className="h1c">PAPARAZZO</h1>
-                    <p>TAP INTO THE INTERNET CULTURE</p>
+                    <p>TAP INTO THE INTERNET CULTURE </p>
+                    <h6 color="#fff">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    OF THE FIRST SOCIAL MEME HUB </h6>
                     <i class="fas fa-user-alien"></i>
                     <div className="mov">
                     <Link class="black lighten-2 btn" to="/signup"><i class="tiny material-icons">face</i> JOIN US</Link>
@@ -19,20 +22,19 @@ const MainPage=()=>{
         </header>
 
         <footer>
-            <ul className="container">
-                <li>
-                    <strong><a href="#" class="fa fa-facebook"></a></strong>
-                    <p>15 STreet Suburt Country 6000</p>
-                </li>
-                <li>
-                    <strong>Phone</strong>
-                    <p>+61 040 400 4000</p>
-                </li>
-                <li>
-                    <strong>Email</strong>
-                    <p>automotive@carsales.com.au</p>
-                </li>
-            </ul>
+           
+                <center>
+                
+                    <strong><a href="#" class="fa fa-facebook" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
+                    <strong><a href="#"  class="fa fa-github-alt" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
+                    <strong><a href="#"  class="fa fa-instagram"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+                    <strong><a href="#"  class="fa fa-youtube-play"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+
+                    <br />
+                    &copy; Abdullah Mujahid 2020
+                   <hr />
+                </center>
+            
         </footer>
     </body>
 </Fragment>
