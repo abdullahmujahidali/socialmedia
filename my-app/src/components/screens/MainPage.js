@@ -25,10 +25,12 @@ const MainPage=()=>{
            
                 <center>
                 
-                    <strong><a href="#" class="fa fa-facebook" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
-                    <strong><a href="#"  class="fa fa-github-alt" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
-                    <strong><a href="#"  class="fa fa-instagram"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
-                    <strong><a href="#"  class="fa fa-youtube-play"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+                    <strong><a href="https://www.facebook.com/m.abdullahmujahid" class="fa fa-facebook" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
+                    <strong><a href="http://www.github.com/abdullahmujahidali"  class="fa fa-github-alt" style={{fontSize:"36px"}} ></a></strong> &nbsp; &nbsp;
+                    <strong><a href="http://www.instagram.com/abdullahmujahidali"  class="fa fa-instagram"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+                    <strong><a href="https://www.youtube.com/channel/UC2xO3s_j_JkY2hC_737ggcQ?view_as=subscriber"  class="fa fa-youtube-play"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+                    <strong><a href="https://www.twitter.com/abdulladgaf"  class="fa fa-twitter"  style={{fontSize:"36px"}}></a></strong> &nbsp; &nbsp;
+
 
                     <br />
                     &copy; Abdullah Mujahid 2020
