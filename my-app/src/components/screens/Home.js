@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, Fragment } from "react"
 import { UserContext } from "../../App"
 
 const Home = () => {
@@ -106,25 +106,42 @@ const Home = () => {
         }).then(res => res.json())
             .then(result => {
                 console.log(result)
-                const newData= data.filter(item=>{
+                const newData = data.filter(item => {
                     return item._id !== result._id
                 })
                 setData(newData)
             })
 
     }
-    return (
+    const deleteComment = (postid, commentid) => {
+        fetch(`/deletecomment/${postid}/${commentid}`, {
+            method: "delete",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                const newData = data.map((item) => {
+                    if (item._id === result._id) {
+                        return result;
+                    } else {
+                        return item;
+                    }
+                });
+                setData(newData);
+            });
+    }; return (
         <div className="home">
             {
                 data.map(item => {
                     return (
                         <div className="card home-card" key={item._id}>
-                            <h5>{item.postedBy.name} {item.postedBy._id === state._id
-                                &&
+                            <h5>{item.postedBy.name} {item.postedBy._id === state._id &&
                                 <i className="material-icons" style={{
                                     float: "right"
                                 }}
-                                onClick={()=>deletePost(item._id)}
+                                    onClick={() => deletePost(item._id)}
                                 >delete</i>
                             }
 
@@ -146,12 +163,38 @@ const Home = () => {
                                 {
                                     item.comments.map(record => {
                                         return (
-
-                                            <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name}: </span>{record.text}
-
-
-
-                                            </h6>
+                                            <Fragment>
+                                               
+                                                    <h6 key={record._id}>
+                                                        <span style={{ fontWeight: "500" }}>
+                                                            {record.postedBy.name}
+                                                        </span>{" "}
+                                                        {record.text}
+                                                        {(item.postedBy._id  ) === state._id && (
+                                                            <i
+                                                                className="material-icons"
+                                                                style={{
+                                                                    float: "right",
+                                                                }}
+                                                                onClick={() => deleteComment(item._id, record._id)}
+                                                            >
+                                                                delete
+                                                            </i>
+                                                        )}
+                                                        {(record.postedBy._id ) === state._id && (
+                                                            <i
+                                                                className="material-icons"
+                                                                style={{
+                                                                    float: "right",
+                                                                }}
+                                                                onClick={() => deleteComment(item._id, record._id)}
+                                                            >
+                                                                delete
+                                                            </i>
+                                                        )}
+                                                    </h6>
+                                               
+                                            </Fragment>
                                         )
 
                                     })
