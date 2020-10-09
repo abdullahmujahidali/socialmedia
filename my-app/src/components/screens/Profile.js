@@ -20,7 +20,7 @@ return (
         <div style={{
             display:"flex",
             justifyContent: "space-around",
-            margin: "18px 0px",
+            margin: "18px 5px",
             borderBottom: "1px solid grey"
         }}>
             <div>
