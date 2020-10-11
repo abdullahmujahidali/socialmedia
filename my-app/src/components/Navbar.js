@@ -10,6 +10,8 @@ const NavBar = () => {
         <Fragment>
         <li><Link to="/profile">Profile</Link></li>
         <li><Link to="/create">Create Post</Link></li>
+        <li><Link to="/myfollowingpost">Explore Followings</Link></li>
+
         <button className="btn waves-effect waves-light #b71c1c red darken-4 yell"
               onClick={()=>{
                 localStorage.clear()

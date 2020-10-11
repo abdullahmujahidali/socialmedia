@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;600&display=swap');
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
-*{
-  
-}
+
 a{
   color: red !important;
 }
@@ -58,6 +56,10 @@ a{
   top:40px !important;
   right:40px !important;
   left: auto !important;
+}
+
+.material-icons:hover{
+  cursor: pointer;
 }
 .rr{
   float:0;
