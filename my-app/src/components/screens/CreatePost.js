@@ -8,37 +8,36 @@ const CreatePost = () => {
     const [image,setImage]=useState("")
     const [url,setUrl]=useState("")
     useEffect(()=>{
-            if(url){
-                fetch('/createpost',{
-                    method:"post",
-                    headers:{
-                        "Content-Type":"application/json",
-                        "Authorization": "Bearer "+localStorage.getItem("jwt")
-                    },
-                    body: JSON.stringify({
-                        title,
-                        body,
-                        pic:url
-                    })
+        if(url){
+            fetch('/createpost',{
+                method:"post",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization": "Bearer "+localStorage.getItem("jwt")
+                },
+                body: JSON.stringify({
+                    title,
+                    body,
+                    pic:url
                 })
-                .then(res=>res.json())
-                .then(data=>{
-                    if(data.error){
-                        M.toast({html:data.error, classes:"#004d40 teal darken-4"})
-                    }
-                    else{
-                        M.toast({html: "Post created", classes:"#03a9f4 light-blue"})
-                        history.push("/")
-                    }
-                 }).catch(err=>{
-                     console.log(err)
-                 })
-            }
-            
-    },[body,history,title,url])
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.error){
+                    M.toast({html:data.error, classes:"#004d40 teal darken-4"})
+                }
+                else{
+                    M.toast({html: "Post created", classes:"#03a9f4 light-blue"})
+                    history.push("/")
+                }
+             }).catch(err=>{
+                 console.log(err)
+             })
+        }
+        
+},[body,history,title,url])
     const postDetails=()=>{
         const data=new FormData()
-        
         data.append("file",image)
         data.append("upload_preset","snap-everyone")
         data.append("cloud_name","imagedirectory")
@@ -48,6 +47,7 @@ const CreatePost = () => {
     })
     .then(res=>res.json())
     .then(data=>{
+        console.log(data)
         setUrl(data.url)
     })
     .catch(err=>{

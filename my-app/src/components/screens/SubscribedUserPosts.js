@@ -137,29 +137,34 @@ const Home = () => {
                 data.map(item => {
                     return (
                         <div className="card home-card" key={item._id}>
-                            <h5 style={{padding: "5px"}}><Link to ={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id:"/profile/"}>{item.postedBy.name}</Link>{item.postedBy._id === state._id &&
-                                <i className="material-icons" style={{
-                                    float: "right"
-                                }}
-                                    onClick={() => deletePost(item._id)}
-                                >delete</i>
-                            }
-
-                            </h5>
+                        <h5 className="brand-logo" style={{padding: "5px",textAlign:"center"}}><Link to ={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id:"/profile/"}>{item.title}</Link>
+                              </h5>
+                            
                             <div className="card-image">
                                 <img src={item.photo} alt="post"></img>
                             </div>
                             <div className="card-content">
-                                <i className="material-icons" style={{ color: "red" }}>whatshot</i>
+                            <h5 style={{ marginTop:"5" }}><Link style={{marginTop: "10px" }} to ={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id:"/profile/"}> {item.postedBy.name}    </Link> <img style={{   float: "left",width:"35px",height:"35px",borderRadius:"80px",marginRight:"2px"  }} src={item.postedBy.pic} ></img>
+                            {item.postedBy._id === state._id &&
+                                <i className="material-icons" style={{
+                                    float: "right"
+                                }}
+                                 
+                                    onClick={() => deletePost(item._id)}
+                                >delete</i>
+                            
+                            }
+                            <i className="material-icons" style={{ color: "red" }}>whatshot</i>
                                 {item.likes.includes(state._id)
                                     ? <i className="material-icons" onClick={() => { unlikePost(item._id) }}>star</i>
                                     :
                                     <i className="material-icons" style={{ color: "red" }} onClick={() => { likePost(item._id) }}>star_border</i>
                                 }
-
-                                <h6>{item.likes.length} stars</h6>
-                                <h4>{item.title}</h4>
+                               
+                                <h6 style={{   float: "right",marginRight:"2px"  }}>{item.likes.length} stars</h6>         
                                 <p>{item.body}</p>
+                            </h5>
+                                
                                 {
                                     item.comments.map(record => {
                                         return (
@@ -187,9 +192,11 @@ const Home = () => {
                                                                 style={{
                                                                     float: "right",
                                                                 }}
+                                                    
                                                                 onClick={() => deleteComment(item._id, record._id)}
                                                             >
                                                                 delete
+
                                                             </i>
                                                         )}
                                                     </h6>

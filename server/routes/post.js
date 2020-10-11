@@ -9,8 +9,8 @@ const Post = mongoose.model("Post")
 
 router.get("/allpost",requireLogin,(req,res)=>{
     Post.find()
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","._id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","._id name pic")
     .then(posts=>{
 
         res.json(posts)
@@ -22,7 +22,7 @@ router.get("/allpost",requireLogin,(req,res)=>{
 
 router.get("/getsubpost",requireLogin,(req,res)=>{
     Post.find({postedBy:{$in:req.user.following}})
-    .populate("postedBy","_id name")
+    .populate("postedBy","_id name pic")
     .populate("comments.postedBy","._id name")
     .then(posts=>{
 
@@ -33,18 +33,17 @@ router.get("/getsubpost",requireLogin,(req,res)=>{
     })
 })
 
-router.post("/createpost",requireLogin,(req,res)=>{
-
-    const {title,body,pic}=req.body
+router.post('/createpost',requireLogin,(req,res)=>{
+    const {title,body,pic} = req.body 
     if(!title || !body || !pic){
-        return res.status(422).json({error:"Please add all fields"})
+      return  res.status(422).json({error:"Plase add all the fields"})
     }
-    req.user.password = undefined 
+    req.user.password = undefined
     const post = new Post({
         title,
         body,
         photo:pic,
-        postedBy: req.user
+        postedBy:req.user
     })
     post.save().then(result=>{
         res.json({post:result})
@@ -93,8 +92,8 @@ router.put("/comment",requireLogin,(req,res)=>{
     },{
         new:true
     })
-    .populate("comments.postedBy","_id name")
-    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name pic")
+    .populate("postedBy","_id name pic")
     .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})

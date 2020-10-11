@@ -4,9 +4,9 @@ import { UserContext } from "../../App"
 import { useParams } from "react-router-dom"
 const Profile = () => {
     const [userProfile, setProfile] = useState(null)
-    const [showfollow,setShowFollow]= useState(true)
     const { state, dispatch } = useContext(UserContext)
     const { userid } = useParams()
+    const [showfollow,setShowFollow]= useState(state?!state.following.includes(userid):true)
     useEffect(() => {
         fetch(`/user/${userid}`, {
             headers: {
@@ -87,7 +87,7 @@ const Profile = () => {
                     }}>
                         <div>
                             <img style={{ width: "160px", height: "160px", borderRadius: "80px" }}
-                                src="https://i.ibb.co/3sNys4h/abd.png" alt="profileImg"
+                               src={userProfile.user.pic} alt="profileImg"
                             />
                         </div>
                         <div>
@@ -116,7 +116,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="gallery">
+                    <div className="gallery" style={{ maxWidth: "550px", margin: "0px auto" }}>
                         {
                             userProfile.posts.map(item => {
                                 return (
@@ -129,8 +129,7 @@ const Profile = () => {
                     </div>
                 </div>
                 : <h2>Loading ...!</h2>}
-
-        </>
+                      </>
     )
 }
 
