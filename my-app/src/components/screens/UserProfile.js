@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react"
 import { UserContext } from "../../App"
-
+import Spinner from "./Spinner"
 import { useParams } from "react-router-dom"
 const Profile = () => {
     const [userProfile, setProfile] = useState(null)
@@ -128,7 +128,7 @@ const Profile = () => {
 
                     </div>
                 </div>
-                : <h2>Loading ...!</h2>}
+                : <Spinner />}
                       </>
     )
 }

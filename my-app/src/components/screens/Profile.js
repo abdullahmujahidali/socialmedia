@@ -1,10 +1,12 @@
 import React,{useEffect,useState,useContext} from 'react'
 import {UserContext} from '../../App'
 
+import Spinner from "./Spinner"
 const Profile  = ()=>{
     const [mypics,setPics] = useState([])
     const {state,dispatch} = useContext(UserContext)
     const [image,setImage] = useState("")
+ 
     useEffect(()=>{
        fetch('/mypost',{
            headers:{
@@ -66,12 +68,12 @@ const Profile  = ()=>{
                 }}>
                     <div>
                         <img style={{ width: "160px", height: "160px", borderRadius: "80px" }}
-                            src={state ? state.pic : "loading"} alt="profileImg"
+                            src={state ? state.pic :<Spinner />} alt="profileImg"
                         />
                     </div>
                     <div>
-                        <h4>{state ? state.name : "loading"}</h4>
-                        <h5>{state ? state.email : "loading"}</h5>
+                        <h4>{state ? state.name :<Spinner />}</h4>
+                        <h5>{state ? state.email :<Spinner />}</h5>
                         <div style={{ display: "flex", width: "108%" }}>
                             <h6 style={{paddingRight:"10px"}}>{mypics.length} posts</h6><br/>
                             <h6 style={{paddingRight:"10px"}}>{state? state.followers.length : "0"} followers</h6>

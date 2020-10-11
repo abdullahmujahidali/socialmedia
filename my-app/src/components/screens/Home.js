@@ -133,7 +133,8 @@ const Home = () => {
                 setData(newData);
                  window.location.reload()
             });
-    };  return (
+    };
+    return (
         <div className="home">
             {
                 data.map(item => {
@@ -205,7 +206,6 @@ const Home = () => {
                                                
                                             </Fragment>
                                         )
-
                                     })
                                 }
                                 <form onSubmit={(e) => {
