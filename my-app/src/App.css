@@ -6,6 +6,10 @@ a{
   color: red !important;
 }
 
+.brand-logo{
+ float:center;
+}
+
 .brand-logo, h2{
   font-family: 'Sansita Swashed', cursive;
 }
@@ -40,6 +44,66 @@ a{
   flex-wrap: wrap;
   justify-content: space-around;
   
+}
+
+.navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--offWhite);
+  z-index: 1;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-header .logo{
+  color: darkblue;  
+  text-decoration: none;
+  font-size: 50px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding-right: 20px;
+}
+.nav-icon {
+  font-size: 1.5rem;
+  color: var(--primaryColor);
+}
+.nav-links {
+  height: 0;
+  overflow: hidden;
+  transition: var(--mainTransition);
+  list-style-type: none;
+  padding: 0px;
+  right: 0px;
+  transition: height 1s;
+}
+.nav-links a {
+  display: block;
+  text-decoration: none;
+  padding: 1rem 0;
+  color: var(--mainBlack);
+  transition: var(--mainTransition);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: var(--mainSpacing);
+}
+.nav-links a:hover {
+  color: var(--primaryColor);
+}
+
+.show-nav {
+  height: 300px;
+  transition: height 1s;
 }
 
 .item{
@@ -154,4 +218,27 @@ footer strong {
 
 footer p {
     margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-btn {
+    display: none;
+  } 
+  .nav-center {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+    margin-right: 8rem;
+    position: absolute;
+    right: 0px;
+
+  }
+  .nav-links a {
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+  }
 }
