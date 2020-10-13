@@ -39,6 +39,7 @@ const NavBar = () => {
     <Fragment>
     
       <nav>
+      
         <div className="nav-wrapper black ">
           <Link to={state ? "/": "/MainPage"} className="brand-logo  ">Paparazzo</Link>
           <ul id="nav-mobile" className="right">

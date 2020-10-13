@@ -2,9 +2,10 @@
   "name": "social",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix my-app && npm run build  --prefix my-app"
   },
   "author": "Abdullah Mujahid",
   "license": "ISC",
